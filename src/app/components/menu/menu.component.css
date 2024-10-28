@@ -1,0 +1,39 @@
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60px;
+  transition: transform 0.3s ease;
+  z-index: 10;
+}
+
+.menu-section {
+  width: 100%;
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.menu-items {
+  padding-left: 10px;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0;
+}
+
+.menu-item span {
+  cursor: pointer;
+}
+
+@media(max-width: 768px) {
+  .side-menu {
+    display: none;
+  }
+}

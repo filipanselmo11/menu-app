@@ -1,0 +1,23 @@
+<div class="side-menu d-flex flex-column align-items-center bg-light p-2">
+  <div class="menu-section" *ngFor="let section of menuSections">
+    <div class="menu-header" (click)="toggleSection(section.id)">
+      <span>
+        {{ section.title }}
+      </span>
+      <span *ngIf="isSectionOpen(section.id)">
+        &#9662;
+      </span>
+      <span *ngIf="!isSectionOpen(section.id)">
+        &#9662;
+      </span>
+    </div>
+    <ul class="menu-items list-unstyled" *ngIf="isSectionOpen(section.id)">
+      <li *ngFor="let item of section.items" class="menu-item">
+        <span (click)="toggleIconClick(item.route)">
+          {{ item.icon }}
+        </span>
+      </li>
+    </ul>
+  </div>
+  <!-- <button class="btn btn-primary mt-3">+</button> -->
+</div>
