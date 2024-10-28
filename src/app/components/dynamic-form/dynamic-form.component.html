@@ -1,0 +1,14 @@
+<form (submit)="onSubmit()">
+  <div *ngFor="let field of fields" class="mb-3">
+    <label [attr.for]="field.name">{{ field.label }}</label>
+    <input *ngIf="field.type === 'text'" type="text" class="form-control" [(ngModel)]="formData[field.name]"
+      [name]="field.name">
+    <input *ngIf="field.type === 'number'" type="number" class="form-control" [(ngModel)]="formData[field.name]"
+      [name]="field.name">
+    <input *ngIf="field.type === 'date'" type="date" class="form-control" [(ngModel)]="formData[field.name]"
+      [name]="field.name">
+  </div>
+  <button type="submit" class="btn btn-primary">
+    Enviar
+  </button>
+</form>

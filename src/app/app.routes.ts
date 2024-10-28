@@ -9,8 +9,13 @@ import { NewComponent } from './pages/new/new.component';
 
 export const routes: Routes = [
   {
-    title: 'Home',
     path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
+    title: 'Home',
+    path: 'home',
     component: HomeComponent
   },
   {

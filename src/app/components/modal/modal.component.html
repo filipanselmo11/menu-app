@@ -1,0 +1,32 @@
+<div class="modal-header">
+  <h4 class="modal-title">Rota Selecionada: {{ selectedRoute }}</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container> <!-- Renderiza o conteúdo do template -->
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Fechar</button>
+</div>
+<!-- <div class="modal-header">
+  <h4 class="modal-title">
+    Rota Selecionada: {{ selectedRoute }}
+  </h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+  </button>
+</div>
+<div class="modal-body">
+  <ng-content *ngTemplateOutlet="contentTemplate"></ng-content>
+   <app-dynamic-form [fields]="fields"></app-dynamic-form>
+  <ng-container *ngIf="modalContent">
+    {{ modalContent }}
+  </ng-container>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">
+    Fechar
+  </button>
+  <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">
+    Próximo
+  </button>
+</div> -->
