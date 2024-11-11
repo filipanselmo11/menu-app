@@ -1,56 +1,48 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuComponent } from "./components/menu/menu.component";
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './components/modal/modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Modal1Component } from './components/modal-1/modal-1.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MenuComponent, ModalComponent],
+  imports: [MenuComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'MENU APP';
-  @ViewChild('modalContentHome', { static: true }) modalContentHome!: TemplateRef<any>;
-  @ViewChild('modalContentAbout', { static: true }) modalContentAbout!: TemplateRef<any>;
-  @ViewChild('modalContentGames', { static: true }) modalContentGames!: TemplateRef<any>;
-  @ViewChild('modalContentDefault', { static: true }) modalContentDefault!: TemplateRef<any>;
+  modalData: {
+    email: string,
+    textAreaValue: string
+  } = {
+    email: 'example@email.com',
+    textAreaValue: 'SALVE, tranquilidade ?'
+  };
 
-  constructor(private router: Router, private modalService: NgbModal) { }
-
-  navigateTo(route: string) {
-    this.router.navigate([route]);
-  }
+  constructor(private modalService: NgbModal) { }
 
   openModal(route: string) {
-    const modalRef = this.modalService.open(ModalComponent);
-    let modalContent: TemplateRef<any>;
-
-    switch (route) {
-      case 'home':
-        modalContent = this.modalContentHome;
-        break;
-      case 'about':
-        modalContent = this.modalContentAbout;
-        break;
-      case 'games':
-        modalContent = this.modalContentGames;
-        break;
-      default:
-        modalContent = this.modalContentDefault;
-        break;
+    console.log(route);
+    if (route === 'home') { // Verifica se a rota é 'home'
+      const modalRef = this.modalService.open(ModalComponent);
+      modalRef.componentInstance.selectedRoute = route;
+      modalRef.componentInstance.email = this.modalData.email;
+      modalRef.componentInstance.saveData = (newEmail: string) => this.saveModalData(newEmail, this.modalData.textAreaValue);
+    } else if (route === 'games') {
+      const modalRef = this.modalService.open(Modal1Component);
+      modalRef.componentInstance.selectedRoute = route;
+      modalRef.componentInstance.textareaValue = this.modalData.textAreaValue;
+      modalRef.componentInstance.saveData = (newTextAreaValue: string) => this.saveModalData(this.modalData.email, newTextAreaValue);
     }
-
-    modalRef.componentInstance.selectedRoute = route;
-    modalRef.componentInstance.contentTemplate = modalContent;
   }
-  // goHomePage() {
-  //   this.router.navigate(['home']);
-  // }
 
-  // goAboutPage() {
-  //   this.router.navigate(['about']);
-  // }
+  saveModalData(newEmail: string, newTextAreaValue: string) {
+    this.modalData.email = newEmail;
+    this.modalData.textAreaValue = newTextAreaValue;
+    console.log('Dados salvos ', this.modalData);
+  }
 }

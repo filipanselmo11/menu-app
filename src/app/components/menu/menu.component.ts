@@ -10,16 +10,15 @@ import { Component, EventEmitter, Output } from '@angular/core';
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
+
 export class MenuComponent {
   @Output('toggle-icon-event') toggleIconEvent = new EventEmitter<string>();
+
   menuSections = [
     { id: 1, title: '1', items: [{ icon: '🎨', route: 'home' }, { icon: '📂', route: 'about' }, { icon: '📅', route: 'calendar' }, { icon: '💻', route: 'dashboard' }] },
     { id: 2, title: '2', items: [{ icon: '🎲', route: 'games' }, { icon: '🎵', route: 'music' }] },
     { id: 3, title: '3', items: [{ icon: '➕', route: 'new' }] }
   ];
-
-  // constructor(private modalService: NgbModal) { }
-
 
   openSections: Set<number> = new Set();
 
@@ -36,12 +35,6 @@ export class MenuComponent {
   }
 
   toggleIconClick(route: string) {
-    this.toggleIconEvent.emit(route);
-  }
-
-  openModal(route: string) {
-    // const modalRef = this.modalService.open(ModalComponent);
-    // modalRef.componentInstance.selectedRoute = route;
-    this.toggleIconEvent.emit(route);
+    this.toggleIconEvent.emit(route); // Emite a rota para o componente pai
   }
 }

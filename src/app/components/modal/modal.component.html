@@ -1,32 +1,15 @@
 <div class="modal-header">
   <h4 class="modal-title">Rota Selecionada: {{ selectedRoute }}</h4>
-  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+  <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
 </div>
 <div class="modal-body">
-  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container> <!-- Renderiza o conteúdo do template -->
+  <div class="mb-3">
+    <label for="email" class="form-label">Endereço de Email</label>
+    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" [(ngModel)]="email">
+    <div id="emailHelp" class="form-text">Nunca compartilharemos seu email com ninguém.</div>
+  </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Fechar</button>
+  <button type="button" class="btn btn-primary" (click)="saveEmail()">Salvar</button>
+  <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancelar</button>
 </div>
-<!-- <div class="modal-header">
-  <h4 class="modal-title">
-    Rota Selecionada: {{ selectedRoute }}
-  </h4>
-  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-  </button>
-</div>
-<div class="modal-body">
-  <ng-content *ngTemplateOutlet="contentTemplate"></ng-content>
-   <app-dynamic-form [fields]="fields"></app-dynamic-form>
-  <ng-container *ngIf="modalContent">
-    {{ modalContent }}
-  </ng-container>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">
-    Fechar
-  </button>
-  <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">
-    Próximo
-  </button>
-</div> -->

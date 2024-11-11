@@ -1,21 +1,38 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-// import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './modal.component.html',
-  styleUrl: './modal.component.css'
+  styleUrls: ['./modal.component.css']
 })
-export class ModalComponent {
-  @Input('selected-route') selectedRoute: string = '';
-  @Input('content-template') contentTemplate!: TemplateRef<any>;
-  // @Input('modal-content') modalContent: any;
-  // @Input() fields!: { name: string; label: string; type: string }[];
+export class ModalComponent implements OnInit {
+  @Input() selectedRoute: string = '';
+  @Input() email!: string;
+  @Input() saveData!: (newEmail: string) => void;
 
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor(private activeModal: NgbActiveModal) { }
 
+  ngOnInit(): void {
+    console.log('Salve, eu sou o MODAL 0');
+    console.log('EMAIL ', this.email);
+  }
+
+  saveEmail() {
+    this.saveData(this.email);
+    this.activeModal.close();
+  }
+
+  closeModal() {
+    this.activeModal.close();
+  }
+
+  sendEmail() {
+    console.log('Email enviado: ', this.email);
+    this.closeModal();
+  }
 }

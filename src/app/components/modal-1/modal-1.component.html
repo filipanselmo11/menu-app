@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    Rota selecionada: {{ selectedRoute }}
+  </h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="closeModal()">
+  </button>
+</div>
+<div class="modal-body">
+  <div class="mb-3">
+    <label for="textareaValue" class="form-label">Example textarea</label>
+    <textarea
+      class="form-control"
+      id="textareaValue"
+      rows="3"
+      [(ngModel)]="textareaValue">
+    </textarea>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="saveTextArea()">
+    Salvar
+  </button>
+  <button type="button" class="btn btn-secondary" (click)="closeModal()">
+    Fechar
+  </button>
+</div>
